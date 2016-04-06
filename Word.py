@@ -23,3 +23,6 @@ class Word:
                Word.DISCRIMINATOR + str(Word.is_letter) + \
                Word.DISCRIMINATOR + str(Word.is_proper_name) + \
                Word.DISCRIMINATOR + str(Word.is_phrase)
+
+    def is_regular(self):
+        return not Word.is_letter and not Word.is_proper_name and not Word.is_phrase

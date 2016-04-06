@@ -24,5 +24,7 @@ if __name__ == '__main__':
     fs.close()
 
     print 'Fetching is done...'
-    print 'ALL WORDS SIZE: ' + str(service.get_words().__len__())
-    print 'end..'
+    print 'Results:'
+    print '-- Regular Words: ', str(service.get_regular_words().__len__())
+    print '-- Proper Words: ', str(service.get_proper_words().__len__())
+    print '-- Phrases: ', str(service.get_phrases().__len__())

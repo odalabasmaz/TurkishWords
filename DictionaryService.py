@@ -12,13 +12,21 @@ class DictionaryService:
     """Common base Dictionary Service"""
 
     fs = None
-    words = []
+    regular_words = []
+    proper_words = []
+    phrases = []
 
     def __init__(self, fs):
         DictionaryService.fs = fs
 
-    def get_words(self):
-        return DictionaryService.words
+    def get_regular_words(self):
+        return DictionaryService.regular_words
+
+    def get_proper_words(self):
+        return DictionaryService.proper_words
+
+    def get_phrases(self):
+        return DictionaryService.phrases
 
     def request_page(self, page_uri):
         if DictionaryConfig.detailed_log:
@@ -55,9 +63,15 @@ class DictionaryService:
                 w = Word(word, is_letter, is_proper_name, is_phrase)
 
                 if DictionaryConfig.detailed_log:
-                    print 'word consumed #', DictionaryService.words.__len__() + 1, ':', w.get_value()
+                    print 'word consumed #', DictionaryService.regular_words.__len__() + 1, ':', w.get_value()
 
-                DictionaryService.words.append(w)
+                if w.is_regular():
+                    DictionaryService.regular_words.append(w)
+                elif w.is_proper_name:
+                    DictionaryService.proper_words.append(w)
+                elif w.is_phrase:
+                    DictionaryService.phrases.append(w)
+
                 DictionaryService.fs.write(w.formatted_value() + "\n")
 
         return is_going_on
