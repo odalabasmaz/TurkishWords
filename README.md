@@ -7,9 +7,10 @@ HOW TO USE
 ---------
 1-  Main python file is **CheckServers.py**</br>
 
-    $ python CheckServers.py
+    $ python Main.py
 
 2-  Modify **config/DictionaryConfig.py** for settings such as proxy or letters.
+
 
 
 Please, feel free to ask anything.
